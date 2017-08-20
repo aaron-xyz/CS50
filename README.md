@@ -8,9 +8,13 @@ This repository contain my solutions to the CS50 problem sets from the 2017 vers
 ## Weeks
 
 **week 0**
+
 **week 1**
+
 **week 2**
+
 **week 3**
+
 **week 4**
 - [edX section](https://courses.edx.org/courses/course-v1:HarvardX+CS50+X/courseware/d0c88865e9434f17808f54870ea230a1/04d14ed5bcaf4d7fae80b6e0772fd1c7/?activate_block_id=block-v1%3AHarvardX%2BCS50%2BX%2Btype%40sequential%2Bblock%4004d14ed5bcaf4d7fae80b6e0772fd1c7)
 - [Lecture](https://video.cs50.net/2016/fall/lectures/4)
@@ -34,8 +38,13 @@ This repository contain my solutions to the CS50 problem sets from the 2017 vers
 
 
 **week 6**
+
 **week 7**
+
 **week 8**
+
 **week 9**
+
 **week 10**
+
 **week 12**

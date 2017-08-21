@@ -1,14 +1,28 @@
 /* !! USING THE CS50 HEADER
  *
- * This algorithm prints a half-left-pyramid
- * similar to those from the Mario Bros Game
+ * CS50 2017 version
+ * Problem Set 1 - (http://docs.cs50.net/2016/fall/psets/1/pset1.html)
+ * MARIO-LESS: mario-less.c  - (http://docs.cs50.net/problems/mario/less/mario.html)
+ *
+ * MARIO (LESS):
+ * This code prints a half-left-pyramid similar to those from 
+ * the Mario Bros Game from height 0 to 23. 
+ * INPUT: height of the pyramid
+ * OUTPUT: a half-left pyramid
+ *
+ * Rectangles of dimensions: (base)*(height) = (height + 1)*(height)
+ *
+ * Usage and examples:
+ * $ ./mario-less
+ * Height: 5
+ *     ##
+ *    ###
+ *   ####
+ *  #####
+ * ######
  * 
- * from height 0 to 23
- * with rectangles of (base)*(height) = (height + 1)(height)
- *
- * The following pyramid is an example
- * of a half pyramid with height 3
- *
+ * $ ./mario-less
+ * Height: 3
  *   ##
  *  ###
  * ####
@@ -20,10 +34,10 @@
 
 int main(void)
 {
-	// variables
+	// initial variables
     int height, spaces;
     
-    // repeat until get a number between 0 and 23 inclusive
+    // repeat until get a number between 0 and 23 (inclusives)
     do
     {
         printf("Height: ");
@@ -35,11 +49,11 @@ int main(void)
     spaces = height;
     
     // loops to create the pyramid
-    // create the columns (columnas)
+    // create the columns
     for (int columnas = 0; columnas < height; columnas++)
     {
         spaces--;
-        // create the rows (filas)
+        // create the rows
         for (int filas = 0; filas < height+1; filas++)
         {
             if (filas <= spaces - 1)

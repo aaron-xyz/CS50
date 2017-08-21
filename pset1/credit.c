@@ -1,24 +1,32 @@
-/* !! USING THE CS50 HEADER
- * 
- * RECOGNIZING CREDIT CARDS
+/** !! USING THE CS50 HEADER
  *
- * This algorithm receives as input
- * a credit card number and returns
- * the name of the credit card:
- * VISA , AMEX or MASTERCARD
+ * CS50 2017 version
+ * Problem Set 1 - (http://docs.cs50.net/2016/fall/psets/1/pset1.html)
+ * CREDIT: credit.c  - (http://docs.cs50.net/problems/credit/credit.html)
  * 
- *
+ * RECOGNIZING CREDIT CARDS:
+ * This code identifies the type of credit card based on
+ * its number. 
+ * INPUT: a credit card number
+ * OUTPUT: the name of the credit card: VISA , AMEX or MASTERCARD
+ * 
  * VISA:
- * 13 and 16 digits
- * 4
- * 
+ * digits: 13 and 16
+ * first digits: 4
+ *
  * AMEX:
- * 15 digits
- * 34 or 37
+ * number of digits: 15
+ * first digits: 34 or 37
  *
  * MASTERCARD:
- * 16 digits
- * 51, 52, 53, 54, or 55 
+ * number of digits: 16
+ * first digits: 51, 52, 53, 54, or 55 
+ *
+ * Usage and example:
+ * $ ./credit
+ * Number: 378282246310005
+ * AMEX
+ * 
  */
 
 #include <stdio.h>
@@ -36,11 +44,11 @@ int main(void)
     printf("Number: ");
     number_card = get_long_long();
     
-    // Checking the number of digits. checking the Luhn's algorithm
     counter = 0;
     even = 0;
     odd = 0;
-    
+
+    // Checking the number of digits. checking the Luhn's algorithm
     while(number_card)
     {
         // Getting modulus of 10 and storing them in digits

@@ -1,27 +1,34 @@
-/* !! USING THE CS50 HEADER
+/** !! USING THE CS50 HEADER
  *
- * This algorithm cipher using the caesar cipher
+ * CS50 2017 version
+ * Problem Set 2 - (http://docs.cs50.net/2017/x/psets/2/pset2.html)
+ * CAESAR: caesar.c  - (http://docs.cs50.net/problems/caesar/caesar.html)
+ *
+ * 
+ * CAESAR:
+ * This algorithm cipher text using the caesar cipher.
+ * You must ENTER the KEY (a positive integer) on command line intarface (CLI)
+ * otherwise a warning is printed.
+ * INPUT: KEY, plaintext
+ * OUTPUT: ciphertext
  *
  *
- * As input you must enter a key after the name of the program
- * the key must be a positive integer
- * if you do not input the key or you write other things than the key
- * the program will return error
+ * Usage and examples:
+ * $ ./caesar 13
+ * plaintext:  HELLO
+ * ciphertext: URYYB
  *
- * the key is use to cipher your plaintext
- * you are asked to input your plaintext after checking you typed your key correctly
- *
- * Examples
  * $ ./caesar 2
- * abc
- * cdf
+ * plaintext: abc
+ * ciphertext: cdf
  *
  * $ ./caesar 2
- * xYz
- * zAb
+ * plaintext: xYz
+ * ciphertext: zAb
  *
- * $ .caesar
- * You must enter a key: ./caesar key
+ * $ ./caesar
+ * You must enter the key: ./caesar KEY
+ *
  */
 
 #include <stdio.h>
@@ -35,30 +42,22 @@ int main(int argc, string argv[])
     // The arguments must be exactly 2
     if (argc != 2)
     {
-        printf("You must enter the key:\n./caesar k\n");
+        printf("You must enter the key: ./caesar KEY\n");
         return 1;
     }
 
-    // transforming from string to int
+    // from string to int
     int key = atoi(argv[1]);
 
-    // asking for the plaint text and defininf variables
+    // input
     printf("plaintext: ");
     string p = get_string();
+
     string c = p;
 
-    /* TEST
-
-    int lenp = strlen(p);
-    char c[lenp + 1];
-
-       TEST
-    */
-
-    // looping through the plaintext
+    // looping through every char in the plaintext - Just change alphabetic chars
     for (int i = 0, p_len = strlen(p); i < p_len; i++)
     {
-
         // is a letter?
         if (isalpha(p[i]))
         {
@@ -74,8 +73,10 @@ int main(int argc, string argv[])
             }
         }
     }
-
+    
+    // output
     printf("ciphertext: %s\n",c);
 
+    // success
 	return 0;
 }

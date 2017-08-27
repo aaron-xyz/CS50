@@ -1,26 +1,40 @@
 /* !! USING THE CS50 HEADER
  *
- * Vigenere cipher
  *
- * ./vigenere key
+ * CS50 2017 version
+ * Problem Set 2 - (http://docs.cs50.net/2017/x/psets/2/pset2.html)
+ * VIGENERE: vigenere.c  - (http://docs.cs50.net/problems/vigenere/vigenere.html)
  *
- * receives as input a key on command line (string)
- * receives a plaintext (string)
- * returns a ciphertext (string)
+ * 
+ * VIGENERE:
+ * This algorithm cipher text using the vigenere cipher.
+ * You must ENTER the KEY (a phrase) on command line intarface (CLI)
+ * otherwise a warning is printed.
+ * INPUT: KEY, plaintext
+ * OUTPUT: ciphertext
+ *
+ *
+ * Usage and examples:
+ * $ ./vigenere ABC
+ * plaintext:  HELLO
+ * ciphertext: HFNLP
+ *
+ * $ ./vigenere
+ * You must enter the key: ./vigenere KEY
  *
  */
 
-#include <cs50.h>
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <cs50.h>
 
 int main(int argc, string argv[])
 {
-    // Just one key (string) after the name of the program  must be entered
+    // Check command line input correctness
     if (argc != 2)
     {
-        printf("You must enter a key: ./vigenere key\n");
+        printf("You must enter the key: ./vigenere KEY\n");
         return 1;
     }
     // Every char of k must be a letter
@@ -30,19 +44,19 @@ int main(int argc, string argv[])
     // Testing every char of k
     for (int i = 0; i < lk; i++)
     {
-        // return error if a char is different to a letters
+        // return error if a char is not a letter
         if ( !(isalpha(k[i])) )
         {
-            printf("k is not alpha: ./vigenere k\n");
+            printf("k must be alpha: ./vigenere k\n");
             return 1;
         }
     }
 
-    // Ask for the plain text
+    // INPUT
     printf("plaintext: ");
     string p = get_string();
 
-    // more variables
+    // variables
     string c = p;
     int lp = strlen(p);
     int j = 0;
@@ -50,8 +64,7 @@ int main(int argc, string argv[])
     // Looping through the plaintext (p)
     for (int i = 0; i < lp; i++)
     {
-
-        // the char of p is letter and uppercase
+        // is an uppercase letter?
         if (isalpha(p[i]) && isupper(p[i]))
         {
             // When a char of k is uppercase
@@ -65,7 +78,7 @@ int main(int argc, string argv[])
             }
 
             // j must iterate just over index of k
-            j = (j+1)%lk;
+            j = (j + 1) % lk;
         }
 
         // the char of p is letter and lowercase
@@ -82,11 +95,13 @@ int main(int argc, string argv[])
             }
 
             // j must iterate just over index of k
-            j = (j+1)%lk;
+            j = (j + 1) % lk;
         }
     }
-
+    
+    // OUTPUT
     printf("ciphertext: %s\n", c);
 	
+    // success
     return 0;
 }

@@ -1,16 +1,25 @@
-/* !! USING THE CS50 HEADER
+/** !! USING THE CS50 HEADER
  *
- * INITIALS
- * this program receives the name of a person
- * theN prints it's intials in uppercase
+ * CS50 2017 version
+ * Problem Set 2 - (http://docs.cs50.net/2017/x/psets/2/pset2.html)
+ * INITIALS: initials-more.c  - (http://docs.cs50.net/problems/initials/more/initials.html)
+ * 
+ * INITIALS (MORE):
+ * this program receives the name of a person and then prints out
+ * it's intials in uppercase
+ * INPUT: a name
+ * OUTPUT: Initials
  *
- * $ ./initials
+ *
+ * Usage and examples:
+ * $ ./initials-more
  * Aaron Stone
  * AS
  *
- * $ ./initials
+ * $ ./initials-more
  * taylor swift
  * TS
+ *
  */
 
 #include <stdio.h>
@@ -20,22 +29,22 @@
 
 int main(void)
 {
-    // Ask for the name
+    // INPUT
     string name = get_string();
     int index = 0;
 
-    // checking that the string is different to NULL
+    // string correctness
     if (name != NULL)
     {
-        // Keep going until the end of the string
+        // until finish the string
         while (name[index] != '\0')
         {
-            // Checking if first character is different to space
+            // Checking first character is letter
             if (index == 0 && name[index] != ' ')
             {
                 printf("%c", toupper(name[index]));
             }
-            // Just print the character if the begining of a new word
+            // Just print initials
             else if (name[index] != ' ' && name[index-1] == ' ')
             {
                 printf("%c", toupper(name[index]));

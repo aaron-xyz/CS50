@@ -1,7 +1,7 @@
 /** !! USING THE CS50 HEADER
  *
  * CS50 2017 version
- * Problem Set 1 - (http://docs.cs50.net/2016/fall/psets/1/pset1.html)
+ * Problem Set 1 - (http://docs.cs50.net/2017/x/psets/1/pset1.html)
  * CREDIT: credit.c  - (http://docs.cs50.net/problems/credit/credit.html)
  * 
  * RECOGNIZING CREDIT CARDS:

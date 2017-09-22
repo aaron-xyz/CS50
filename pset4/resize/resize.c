@@ -1,14 +1,20 @@
-/**
- * This program
- * Resize a BMP from a scale from 1 to 100 (inclusive)
+/** Aaron AP
+ *
+ * CS50 2017 version
+ * Problem Set 4 - (http://docs.cs50.net/2017/x/psets/4/pset4.html)
+ * RESIZE: resize.c  - (http://docs.cs50.net/problems/resize/less/resize.html)
+ *
+ * RESIZE:
+ * This program Resize a BMP from a scale from 1 to 100 (inclusive)
  *
  * Usage:
- * ./resize scale infile.bmp ourfile.bmp
+ * compile: make resize
+ * execute: ./resize scale infile.bmp outfile.bmp
+ *
  */
 
 #include <stdio.h>
 #include <stdlib.h>
-
 #include "bmp.h"
 
 int main(int argc, char *argv[])

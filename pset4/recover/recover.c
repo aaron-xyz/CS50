@@ -1,9 +1,16 @@
-/**
+/** Aaron AP
+ *
+ * CS50 2017 version
+ * Problem Set 4 - (http://docs.cs50.net/2017/x/psets/4/pset4.html)
+ * RECOVER: resize.c  - (http://docs.cs50.net/problems/recover/recover.html)
+ *
+ * RECOVER:
  * This program recover images
  * from a memory card (raw file)
  *
  * Usage:
- * $ ./recover card.raw
+ * compile: make recover
+ * execute: $ ./recover card.raw
  *
  */
 
@@ -17,9 +24,9 @@ typedef uint8_t BYTE;
 // size of the block
 #define BLOCKSIZE 512
 
-int main (int argc, char *argv[])
+int main(int argc, char *argv[])
 {
-	// Check correct input
+    // Check correct input
     if (argc != 2)
     {
         fprintf(stderr, "Usage: ./recover card.raw\n");
@@ -27,9 +34,9 @@ int main (int argc, char *argv[])
     }
 
     // open card file
-	FILE* raw_file = fopen(argv[1], "r");
+    FILE *raw_file = fopen(argv[1], "r");
 
-	// if raw_file is NULL (non-existent file)
+    // if raw_file is NULL (non-existent file)
     if (raw_file == NULL)
     {
         printf("Could not open file.\n");
@@ -65,7 +72,7 @@ int main (int argc, char *argv[])
             }
 
             // read one byte at a time
-            fread(&block[i], sizeof (BYTE), 1, raw_file);
+            fread(&block[i], sizeof(BYTE), 1, raw_file);
         }
 
         // if block's first 4 bytes match those of a jpg (start of new jpg)
@@ -92,13 +99,13 @@ int main (int argc, char *argv[])
             }
 
             // write the block containing the photo to the outfile
-            fwrite(&block[0], BLOCKSIZE * sizeof (BYTE), 1, outfile);
+            fwrite(&block[0], BLOCKSIZE * sizeof(BYTE), 1, outfile);
         }
 
         // if outfile has been opened, write the block to the outfile
         else if (outfile != NULL)
         {
-            fwrite(&block[0], BLOCKSIZE * sizeof (BYTE), 1, outfile);
+            fwrite(&block[0], BLOCKSIZE * sizeof(BYTE), 1, outfile);
         }
     }
 

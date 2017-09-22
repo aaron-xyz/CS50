@@ -6,6 +6,8 @@
  * [x] empty
  * [x] enqueue
  * [x] dequeue
+ * [x] search
+ * [x] length
  * [x] print
  *
  */
@@ -97,32 +99,7 @@ int isEmpty(node *list)
     }
 }
 
-// PREPEND
-node *prepend(node *list, int n)
-{
-    // Allocate space
-    node *temp = (node *)malloc(sizeof(node));
-
-    // check allocation correctness
-    if (temp == NULL)
-    {
-        fprintf(stderr, "Allocation error when inserting node.\n");
-        exit(1);
-    }
-    // prepend node
-    else
-    {
-        // setting new node values
-        temp->val = n;
-        temp->next = list;
-        // first points to new node
-        list = temp;
-        // make changes out of current scope
-        return list;
-    }
-}
-
-// APPEND
+// ENQUEUE
 node *enqueue(node *list, int n)
 {
     // Allocate space for the new node
@@ -163,56 +140,7 @@ node *enqueue(node *list, int n)
     return list;
 }
 
-// INSERT_SORTED
-node *insertSorted(node *list, int n)
-{
-    // Otherwise allocate memory for the new node
-    node *temp = (node *)malloc(sizeof(node));
-
-    // Check for allocation correctness
-    if (temp == NULL)
-    {
-        printf("Memory allocation not possible\n");
-        exit(1);
-    }
-
-    // set values
-    temp->val = n;
-    temp->next = NULL;
-
-    // ptr and list point the same
-    node *prev = NULL;
-    for (node *current = list; current != NULL; current = current->next)
-    {
-        // break if we find a value larger than i
-        if (current->val > n)
-        {
-            break;
-        }
-        else
-        {
-            prev = current;
-        }
-    }
-
-    // if new belongs at head, prepend
-    if (prev == NULL)
-    {
-        temp->next = list;
-        list = temp;
-    }
-
-    // else insert in middle or end
-    else
-    {
-        temp->next = prev->next;
-        prev->next = temp;
-    }
-
-    return list;
-}
-
-// ERASE
+// DEQUEUE
 node *dequeue(node *list)
 {
     // It will sotre the data in the node to be deleted

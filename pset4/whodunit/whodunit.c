@@ -1,10 +1,16 @@
-/**
- * This program
- * Reveal the hidden message of the image clue.bmp
- * the the message is showed in the verdict file
+/** Aaron AP
+ *
+ * CS50 2017 version
+ * Problem Set 4 - (http://docs.cs50.net/2017/x/psets/4/pset4.html)
+ * WHODUNIT: whodunit.c  - (http://docs.cs50.net/problems/whodunit/whodunit.html)
+ *
+ * WHODUNIT:
+ * This program Reveal the hidden message of the image clue.bmp
+ * the message is showed in the verdict file - verdict.bmp
  *
  * Usage:
- * ./whodunit clue.bmp verdict.bmp
+ * compile: make whodunit
+ * execute: ./whodunit clue.bmp verdict.bmp
  *
  */
 

@@ -1,5 +1,27 @@
-/**
- * Implements a spell-checker.
+/** Aaron AP
+ *
+ * CS50 2017 version
+ * Problem Set 5 - (http://docs.cs50.net/2017/x/psets/5/pset5.html)
+ * SPELLER: speller.c  - (http://docs.cs50.net/problems/speller/speller.html)
+ *
+ * SPELLER:
+ * This algorithm implements checks how many words of certain text
+ * exist in a given dictionary.
+ *
+ * INPUT: DICTIONARY (OPT), TEXT
+ * OUTPUT: A list of misspelled words,
+ *         # misspelled words, # words in dictionary, # words in text,
+ *         time in load, check, size and unload.
+ *
+ * This file depends on:
+ * - dictionary.h - constants, structs, and prototyped functions.
+ * - dictionary.c - where functions load, check, size, and unload
+ *                  are implemented.
+ *
+ * Usage and examples:
+ * compile (via explicit Makefile): $ make speller
+ * execute: $ ./fifteen [dictionaries/small] texts/austinpowers.txt
+ *
  */
 
 #include <ctype.h>
@@ -33,7 +55,7 @@ int main(int argc, char *argv[])
     double time_load = 0.0, time_check = 0.0, time_size = 0.0, time_unload = 0.0;
 
     // determine dictionary to use
-    char* dictionary = (argc == 3) ? argv[1] : DICTIONARY;
+    char *dictionary = (argc == 3) ? argv[1] : DICTIONARY;
 
     // load dictionary
     getrusage(RUSAGE_SELF, &before);
@@ -65,7 +87,7 @@ int main(int argc, char *argv[])
 
     // prepare to spell-check
     int index = 0, misspellings = 0, words = 0;
-    char word[LENGTH+1];
+    char word[LENGTH + 1];
 
     // spell-check each word in text
     for (int c = fgetc(fp); c != EOF; c = fgetc(fp))
@@ -170,16 +192,16 @@ int main(int argc, char *argv[])
     printf("TIME IN check:        %.2f\n", time_check);
     printf("TIME IN size:         %.2f\n", time_size);
     printf("TIME IN unload:       %.2f\n", time_unload);
-    printf("TIME IN TOTAL:        %.2f\n\n", 
-     time_load + time_check + time_size + time_unload);
+    printf("TIME IN TOTAL:        %.2f\n\n",
+           time_load + time_check + time_size + time_unload);
 
     // that's all folks
     return 0;
 }
 
 /**
- * Returns number of seconds between b and a.
- */
+  * Returns number of seconds between b and a.
+  */
 double calculate(const struct rusage *b, const struct rusage *a)
 {
     if (b == NULL || a == NULL)
@@ -189,9 +211,8 @@ double calculate(const struct rusage *b, const struct rusage *a)
     else
     {
         return ((((a->ru_utime.tv_sec * 1000000 + a->ru_utime.tv_usec) -
-                 (b->ru_utime.tv_sec * 1000000 + b->ru_utime.tv_usec)) +
-                ((a->ru_stime.tv_sec * 1000000 + a->ru_stime.tv_usec) -
-                 (b->ru_stime.tv_sec * 1000000 + b->ru_stime.tv_usec)))
-                / 1000000.0);
+                  (b->ru_utime.tv_sec * 1000000 + b->ru_utime.tv_usec)) +
+                 ((a->ru_stime.tv_sec * 1000000 + a->ru_stime.tv_usec) -
+                  (b->ru_stime.tv_sec * 1000000 + b->ru_stime.tv_usec))) / 1000000.0);
     }
 }

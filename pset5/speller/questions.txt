@@ -1,7 +1,58 @@
-0.  TODO
-1.  TODO
-2.  TODO
-3.  TODO
-4.  TODO
-5.  TODO
-6.  TODO
+0.  What is pneumonoultramicroscopicsilicovolcanoconiosis?
+    Is the longest word in the english language. 45 letters long.
+
+1.  According to its man page, what does getrusage do?
+    Return the measurement of the resource usages.
+    """
+    NAME
+       getrusage - get resource usage
+    SYNOPSIS
+       #include <sys/time.h>
+       #include <sys/resource.h>
+       int getrusage(int who, struct rusage *usage);
+    DESCRIPTION
+       getrusage() returns resource usage measures for who, which can be one of the following:
+       RUSAGE_SELF
+              Return resource usage statistics for the calling process,
+              which is the sum of resources used by all threads in the process.
+    """
+
+2.  Per that same man page, how many members are in a variable of type struct rusage?
+    16
+
+3.  Why do you think we pass before and after by reference (instead of by value) to calculate,
+even though we’re not changing their contents?
+    I have no idea, maybe because it is a good practice?
+
+4.  Explain as precisely as possible, in a paragraph or more, how main goes about reading words from a file. In other words,
+convince us that you indeed understand how that function’s for loop works.
+    - Read the text you want to spell-check as <text>. Read that text char by char, start by the first char
+      and stop when the "EOF" char is reached.
+    - Then there are three scenearios:
+      1. When the char is actually a "letter" or a "quote" and that quote is not the beginning
+         of the string (index > 0).
+         - Under this scenario every char counts as part of the word. If the length of the word exceeds
+           the LENGTH then is dismissed and the process (for-loop) start again.
+      2. When the string contain numeric value, then the whole string is ignored and start the process again
+         for the next word.
+      3. When the char is not numeric, alpha nor quote and the index > 0. then the end of a word
+         has been found. Terminate current word, update counter of words, check misspelling (and update if necessary)
+         and prepare for the next word.
+
+5.  Why do you think we used fgetc to read each word’s characters one at a time rather than use fscanf with
+a format string like "%s" to read whole words at a time? Put another way, what problems might arise by relying on fscanf alone?
+    With fgetc is able to read char by char and keep track of the position of the last char checked,
+    on the other hand, scanf is not. Moreover getting the whole string just mean more work since in the end still
+    necessary to check every char to find if a word is misspelled or not.
+
+6.  Why do you think we declared the parameters for check and load as const (which means "constant")?
+    Maybe when you take the adress of a pointer as an argument of a function you can modify it.
+    But, if you define argument as constant the you can check it but not modify it.
+
+
+Extra:
+
+- What #undef mean?
+- What calculate() is and do?
+- What getrusage() is and do?
+    - What RUSAGE_SELF mean?

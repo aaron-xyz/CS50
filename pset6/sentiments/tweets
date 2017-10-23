@@ -1,3 +1,40 @@
 #!/usr/bin/env python3
 
-# TODO
+import os
+import sys
+import helpers
+
+from analyzer import Analyzer
+from termcolor import colored
+
+def main():
+
+    # ensure proper usage
+    if len(sys.argv) != 2:
+        sys.exit("Usage: ./tweets @account_name")
+
+    # absolute paths to lists
+    positives = os.path.join(sys.path[0], "positive-words.txt")
+    negatives = os.path.join(sys.path[0], "negative-words.txt")
+
+    # get tweets using helpers
+    tweets = helpers.get_user_timeline(sys.argv[1], 50)
+    if tweets == None:
+        sys.exit("Something went wrong. Maybe the account is privated or doesn't exist.")
+
+    # initialize analyser -- load positive and negative words
+    analyzer = Analyzer(positives, negatives)
+
+    # analyse and print each tweet (in tweets) with its score
+    for i in range(len(tweets)):
+        score = analyzer.analyze(tweets[i])
+        if score > 0.0:
+            print(colored(" " + str(score) + " " + tweets[i], "green"))
+        elif score < 0.0:
+            print(colored(str(score) + " " + tweets[i], "red"))
+        else:
+            print(colored(" " + str(score) + " " + tweets[i], "yellow"))
+
+
+if __name__ == "__main__":
+    main()

@@ -2,9 +2,10 @@
 This repository contain my solutions to the CS50 problem sets from the **2017 version (edx version)**.
 
 ## Webpages
-- https://cs50.harvard.edu
-- http://cs50.edx.org/
-- https://study.cs50.net
+- [CS50 Harvard](https://cs50.harvard.edu)
+- [CS50 edX](http://cs50.edx.org/)
+- [CS50 study](https://study.cs50.net)
+- [CS50 IDE](https://cs50.io/)
 
 ## Weeks
 

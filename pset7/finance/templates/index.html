@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    {# {{ r }} #}
+        <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>TOTAL</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td colspan="4"></td>
+                <td>{{ r|sum(attribute='total')|add(cash)|usd }}</td>
+            </tr>
+        </tfoot>
+        <tbody>
+            {% for d in r %}
+                {% if d["SUM(shares)"] %}
+                    <tr>
+                        <td>{{ d["symbol"] }}</td>
+                        <td>{{ d["name"] }}</td>
+                        <td>{{ d["SUM(shares)"] }}</td>
+                        <td>{{ d["price"]|usd }}</td>
+                        <td>{{ d["total"]|usd }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            <tr>
+                <td colspan="4">CASH</td>
+                <td>{{ cash|usd }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

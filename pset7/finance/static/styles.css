@@ -44,3 +44,32 @@ main td
     /* left-align tables' cells */
     text-align: left;
 }
+
+.cash-number
+{
+    font-family: "lucida-console";
+}
+
+/*ref: https://www.w3schools.com/howto/howto_css_button_group_vertical.asp */
+.settings-btn-group button
+{
+    /*background-color: DodgerBlue;/*
+    /* border: 1px solid black; */
+    /* color: white; */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    width: 100%; /* Set a width if needed */
+    display: block; /* Make the buttons appear below each other */
+}
+
+.settings-btn-group button:not(:last-child)
+{
+    border-bottom: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.settings-btn-group button:hover
+{
+    text-decoration: none;
+    background-color: #a4ddf5;
+}

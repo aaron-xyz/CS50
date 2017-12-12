@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add cash
+{% endblock %}
+
+{% block main %}
+    <h1>Succesful transaction!</h1>
+    <h3>You added {{ added_cash }}</h3>
+    <p>You had {{ old_cash|usd }}, now yo have {{ new_cash|usd }}.</p>
+{% endblock %}

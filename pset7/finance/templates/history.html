@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    {# {{ historial }} #}
+    <table class="table table-striped historial">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>Transacted (UTC)</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for d in historial %}
+            {% if d["shares"] < 0 %}
+                <tr>
+                    <td style="color:Tomato; font-weight: bold;">{{ d["symbol"] }}</td>
+                    <td style="color:Tomato; font-weight: bold;">{{ d["shares"] }}</td>
+                    <td style="color:Tomato; font-weight: bold;">{{ d["price"]|usd }}</td>
+                    <td style="color:Tomato; font-weight: bold;">{{ d["date"] }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td style="color:MediumSeaGreen; font-weight: bold;">{{ d["symbol"] }}</td>
+                    <td style="color:MediumSeaGreen; font-weight: bold;">{{ d["shares"] }}</td>
+                    <td style="color:MediumSeaGreen; font-weight: bold;">{{ d["price"]|usd }}</td>
+                    <td style="color:MediumSeaGreen; font-weight: bold;">{{ d["date"] }}</td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

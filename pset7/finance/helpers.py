@@ -112,3 +112,9 @@ def lookup(symbol):
 def usd(value):
     """Formats value as USD."""
     return f"${value:,.2f}"
+
+def add(x, y):
+	try:
+		return (x + y)
+	except TypeError:
+		print("type a number")

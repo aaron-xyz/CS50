@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Settings
+{% endblock %}
+
+{% block main %}
+    <h1>I want to ...</h1>
+    <div class="btn-group settings-btn-group">
+        <a href="{{ url_for("change_password") }}"><button class="btn btn-default">Change my password</button></a>
+        <a href="{{ url_for("add_cash") }}"><button class="btn btn-default">Add more cash</button></a>
+    </div>
+{% endblock %}

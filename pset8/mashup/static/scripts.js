@@ -37,7 +37,7 @@ $(function() {
     // options for map
     // https://developers.google.com/maps/documentation/javascript/reference#MapOptions
     var options = {
-        center: {lat: 37.4236, lng: -122.1619}, // Stanford, California
+        center: {lat: 42.3770, lng: -71.1256}, // Cambridge
         disableDefaultUI: true,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         maxZoom: 14,
@@ -63,7 +63,51 @@ $(function() {
  */
 function addMarker(place)
 {
-    // TODO
+    // get position of the place requested
+    var location = new google.maps.LatLng(place["latitude"], place["longitude"]);
+
+    // icon for the marker
+    var image = "https://maps.google.com/mapfiles/kml/pal2/icon31.png";
+
+    // instantiate marker
+    var marker = new google.maps.Marker({
+        position: location,
+        // title: place.place_name +", "+ place.admin_name1,
+        label: place.place_name +", "+ place.admin_name1,
+        map: map,
+        icon: {
+            url: image,
+            labelOrigin: new google.maps.Point(11,40)
+        }
+    });
+
+    // get articles for place
+    $.getJSON(Flask.url_for("articles"), {geo: place.postal_code}, function(articles) {
+
+        // Only display infowindow if articles exist
+        if (!$.isEmptyObject(articles))
+        {
+			// list the articles
+            var articlesList = "<ul>";
+            for (var i = 0; i < articles.length; i++)
+            {
+				//Each list item is stored into articlesString
+            	articlesList += "<li><a target='_NEW' href='" + articles[i].link
+            	+ "'>" + articles[i].title + "</a></li>";
+            }
+        }
+
+        // close the list of articles
+		articlesList += "</ul>";
+
+		// when the marker is clicked, then show the info
+        google.maps.event.addListener(marker, 'click', function() {
+            showInfo(marker, articlesList);
+		});
+    });
+
+    // add marker to the map markers
+    markers.push(marker);
 }
 
 /**
@@ -99,7 +143,7 @@ function configure()
         templates: {
             suggestion: Handlebars.compile(
                 "<div>" +
-                "TODO" +
+                "{{ place_name }}, {{ admin_name1 }}, {{ postal_code }}" +
                 "</div>"
             )
         }
@@ -123,8 +167,8 @@ function configure()
     // re-enable ctrl- and right-clicking (and thus Inspect Element) on Google Map
     // https://chrome.google.com/webstore/detail/allow-right-click/hompjdfbfmmmgflfjdlnkohcplmboaeo?hl=en
     document.addEventListener("contextmenu", function(event) {
-        event.returnValue = true; 
-        event.stopPropagation && event.stopPropagation(); 
+        event.returnValue = true;
+        event.stopPropagation && event.stopPropagation();
         event.cancelBubble && event.cancelBubble();
     }, true);
 
@@ -140,7 +184,11 @@ function configure()
  */
 function removeMarkers()
 {
-    // TODO
+    // remove the markers from the map
+    for (var i = 0, n = markers.length; i < n; i++)
+    {
+	    markers[i].setMap(null);
+    }
 }
 
 /**
@@ -154,7 +202,7 @@ function search(query, syncResults, asyncResults)
     };
     $.getJSON(Flask.url_for("search"), parameters)
     .done(function(data, textStatus, jqXHR) {
-     
+
         // call typeahead's callback with search results (i.e., places)
         asyncResults(data);
     })
@@ -198,7 +246,7 @@ function showInfo(marker, content)
 /**
  * Updates UI's markers.
  */
-function update() 
+function update()
 {
     // get map's bounds
     var bounds = map.getBounds();

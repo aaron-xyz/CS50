@@ -33,15 +33,40 @@ def index():
 def articles():
     """Look up articles for geo."""
 
-    # TODO
+    # get localization
+    geo = request.args.get("geo")
+
+    # if geo not found
+    if not geo:
+        raise RuntimeError("Geo not set")
+
+    # search for articles near
+    articles = lookup(geo)
+
+    # return up to 5 articles as a JSON object
+    if len(articles) > 5:
+        return jsonify([articles[0], articles[1], articles[2], articles[4], articles[5]])
+    else:
+        return jsonify(articles)
+
     return jsonify([])
 
 @app.route("/search")
 def search():
     """Search for places that match query."""
 
-    # TODO
-    return jsonify([])
+    # get the request q from HTML the form; "%" is a wilcard for SQLite
+    q = request.args.get("q") + "%"
+
+    # if matches not found
+    if not q:
+        raise RuntimeError("request does not match")
+
+    # Finds any postal code, city and state that start with q
+    place = db.execute("SELECT * FROM places WHERE postal_code LIKE :quest OR place_name LIKE :quest OR admin_name1 LIKE :quest LIMIT 10", quest=q)
+
+    # Return up to 10 places found as JSON object
+    return jsonify(place)
 
 @app.route("/update")
 def update():
